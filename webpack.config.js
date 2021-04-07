@@ -5,24 +5,28 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.jsx',
+    entry: './src/index.tsx',
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(tsx?)$/,
+                use: 'ts-loader',
+            },
+            {
+                test: /\.(jsx?)$/,
                 exclude: /node_modules/,
-                use: 'babel-loader'
+                use: 'babel-loader',
             },
             {
                 test: /\.html$/,
-                use: 'html-loader'
+                use: 'html-loader',
             },
             {
                 test: /\.scss$/,
                 use: [
                     'style-loader',
                     'css-loader',
-                    'sass-loader'
+                    'sass-loader',
                 ]
             }
         ]
@@ -30,21 +34,21 @@ module.exports = {
     plugins: [
         new htmlWebpackPlugin({
             template: './src/index.html',
-            filename: './index.html'
+            filename: './index.html',
         })
     ],
     resolve: {
         // extensions: ['.tsx', '.ts', '.js']
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
     },
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        publicPath: '/',
     },
     optimization: {
         splitChunks: {
-            chunks: 'all'
+            chunks: 'all',
         }
     },
     devServer: {

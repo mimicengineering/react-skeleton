@@ -7,7 +7,7 @@ import '../styles/base.scss'
 export class App extends Component {
     render() {
         return (
-            <div>asdf</div>
+            <div>hjkglhglgh</div>
         );
     };
 };
